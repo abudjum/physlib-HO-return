@@ -876,8 +876,8 @@ a multiple of its period
 -/
 
 lemma return_time (IC : InitialConditions) (non_trivial : (IC.x₀ ≠ 0 ∨ IC.v₀ ≠ 0) )
-   (t : Time) (ht : IC.trajectory S t = IC.x₀ ∧ ∂ₜ (IC.trajectory S) t = IC.v₀) :
-   (∃ n : ℤ,  (n : ℝ ) * (T S) = t) := by
+    (t : Time) (ht : IC.trajectory S t = IC.x₀ ∧ ∂ₜ (IC.trajectory S) t = IC.v₀) :
+    (∃ n : ℤ,  (n : ℝ ) * (T S) = t) := by
   have htx := ht.left
   have htv := ht.right
   rw [InitialConditions.trajectory_eq] at htx
@@ -889,7 +889,6 @@ lemma return_time (IC : InitialConditions) (non_trivial : (IC.x₀ ≠ 0 ∨ IC.
   set xx := inner ℝ IC.x₀ IC.x₀
   set vv := inner ℝ IC.v₀ IC.v₀
   set xv := inner ℝ IC.x₀ IC.v₀
-
   set det := vv + xx *  S.ω^2
   have zero_lt_det :  0 < det := by
    cases non_trivial with
@@ -944,7 +943,6 @@ lemma return_time (IC : InitialConditions) (non_trivial : (IC.x₀ ≠ 0 ∨ IC.
     _ = c * det / det := by rfl
     _ = c := by simp [det_ne_zero]
     _ = _ := by rfl
-
   let ⟨n, hn⟩ := (Real.cos_eq_one_iff (S.ω * t)).mp (Eq.symm hcos)
   use n
   calc
